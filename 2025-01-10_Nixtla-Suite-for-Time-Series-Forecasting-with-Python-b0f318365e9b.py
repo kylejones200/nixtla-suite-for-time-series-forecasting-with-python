@@ -94,10 +94,10 @@ logger.info(f"Mean Squared Error (MSE): {mse_value:.2f}")
 logger.info(f"Root Mean Squared Error (RMSE): {rmse_value:.2f}")
 logger.info(f"Mean Absolute Error (MAE): {mae_value:.2f}")
 
-Forecast Metrics:
-Mean Squared Error (MSE): 142.56
-Root Mean Squared Error (RMSE): 11.94
-Mean Absolute Error (MAE): 11.00
+# Forecast Metrics:
+# Mean Squared Error (MSE): 142.56
+# Root Mean Squared Error (RMSE): 11.94
+# Mean Absolute Error (MAE): 11.00
 
 
 # Create a list of models and instantiation parameters
@@ -138,7 +138,7 @@ evaluation_df.head()
 
 sf.plot(df, forecasts_df, models=["DynamicOptimizedTheta"],  level=[90])
 
-Forecast Metrics:
-Mean Squared Error (MSE): 598.98
-Root Mean Squared Error (RMSE): 24.47
-Mean Absolute Error (MAE): 19.99
+# Forecast Metrics:
+# Mean Squared Error (MSE): 598.98
+# Root Mean Squared Error (RMSE): 24.47
+# Mean Absolute Error (MAE): 19.99

@@ -4,10 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from statsforecast import StatsForecast
 from statsforecast.models import (
-import logging
+# import logging
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(message)s')
+# logging.basicConfig(level=logging.INFO, format='%(message)s')
 
     AutoARIMA, HoltWinters, CrostonClassic as Croston,
     HistoricAverage, DynamicOptimizedTheta as DOT, SeasonalNaive
