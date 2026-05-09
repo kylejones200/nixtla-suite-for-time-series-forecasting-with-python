@@ -38,7 +38,7 @@ def main():
     output_dir = Path(args.output_dir) if args.output_dir else Path(config['output']['figures_dir'])
     output_dir.mkdir(exist_ok=True)
     
-        df = generate_synthetic_data(
+    df = generate_synthetic_data(
         config['data']['start_date'],
         config['data']['periods'],
         config['data']['frequency'],
@@ -47,14 +47,14 @@ def main():
     
     train, hold_out = split_data(df, config['forecast']['hold_out_hours'])
     
-        sf = fit_statsforecast(
+    sf = fit_statsforecast(
         train,
         config['model']['season_length'],
         config['model']['freq'],
         config['model']['n_jobs']
     )
     
-        forecasts = generate_forecast(sf, len(hold_out))
+    forecasts = generate_forecast(sf, len(hold_out))
     forecasts['ds'] = hold_out['ds'].values
     
     actual = hold_out['y'].values

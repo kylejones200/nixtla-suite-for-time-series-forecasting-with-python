@@ -58,7 +58,7 @@ def calculate_metrics(actual: np.ndarray, predicted: np.ndarray) -> Dict[str, fl
 def plot_forecast(df: pd.DataFrame, hold_out: pd.DataFrame, forecasts: pd.DataFrame,
                  output_path: Path, model_name: str = "AutoARIMA", 
                  metrics: Dict[str, float] = None):
- """Plot forecast """
+    """Plot forecast """
     fig, ax = plt.subplots(figsize=(12, 6))
     
     ax.plot(df['ds'], df['y'], label='Historical Data', color="#4A90A4", linewidth=1.2)
