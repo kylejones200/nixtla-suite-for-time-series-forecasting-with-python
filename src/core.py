@@ -59,20 +59,21 @@ def plot_forecast(df: pd.DataFrame, hold_out: pd.DataFrame, forecasts: pd.DataFr
                  output_path: Path, model_name: str = "AutoARIMA", 
                  metrics: Dict[str, float] = None):
     """Plot forecast """
-    fig, ax = plt.subplots(figsize=(12, 6))
+                 if plot:
+        fig, ax = plt.subplots(figsize=(12, 6))
     
-    ax.plot(df['ds'], df['y'], label='Historical Data', color="#4A90A4", linewidth=1.2)
-    ax.plot(hold_out['ds'], hold_out['y'], label='Hold-Out Data', color="#8B6F9E", linewidth=1.2)
-    ax.plot(forecasts['ds'], forecasts[model_name], label='Forecast', color="#D4A574", linewidth=1.2)
+        ax.plot(df['ds'], df['y'], label='Historical Data', color="#4A90A4", linewidth=1.2)
+        ax.plot(hold_out['ds'], hold_out['y'], label='Hold-Out Data', color="#8B6F9E", linewidth=1.2)
+        ax.plot(forecasts['ds'], forecasts[model_name], label='Forecast', color="#D4A574", linewidth=1.2)
     
-    title_text = f"Time Series Forecast with {model_name}"
-    if metrics:
-        title_text += f": RMSE = {metrics['rmse']:.2f}, MAE = {metrics['mae']:.2f}"
+        title_text = f"Time Series Forecast with {model_name}"
+        if metrics:
+            title_text += f": RMSE = {metrics['rmse']:.2f}, MAE = {metrics['mae']:.2f}"
     
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Value")
-    ax.legend(loc='best')
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Value")
+        ax.legend(loc='best')
     
-    plt.savefig(output_path, dpi=100, bbox_inches="tight")
-    plt.close()
+        plt.savefig(output_path, dpi=100, bbox_inches="tight")
+        plt.close()
 
