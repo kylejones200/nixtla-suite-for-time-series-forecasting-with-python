@@ -6,69 +6,86 @@ Main entry point for running StatsForecast forecasting.
 """
 
 import argparse
-import yaml
 import logging
 from pathlib import Path
+
+import yaml
 from src.core import (
-    generate_synthetic_data,
-    split_data,
+    calculate_metrics,
     fit_statsforecast,
     generate_forecast,
-    calculate_metrics,
+    generate_synthetic_data,
+    split_data,
 )
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
 
 def load_config(config_path: Path = None) -> dict:
     """Load configuration from YAML file."""
     if config_path is None:
-        config_path = Path(__file__).parent / 'config.yaml'
-    
+        config_path = Path(__file__).parent / "config.yaml"
+
     with open(config_path) as f:
         return yaml.safe_load(f)
 
+
 def main():
-    parser = argparse.ArgumentParser(description='Nixtla StatsForecast Forecasting')
-    parser.add_argument('--config', type=Path, default=None, help='Path to config file')
-    parser.add_argument('--output-dir', type=Path, default=None, help='Output directory for plots')
-    args = parser.parse_args()
-    
-    config = load_config(args.config)
-    output_dir = Path(args.output_dir) if args.output_dir else Path(config['output']['figures_dir'])
-    output_dir.mkdir(exist_ok=True)
-    
-    df = generate_synthetic_data(
-        config['data']['start_date'],
-        config['data']['periods'],
-        config['data']['frequency'],
-        config['data']['seed']
+    parser = argparse.ArgumentParser(description="Nixtla StatsForecast Forecasting")
+    parser.add_argument("--config", type=Path, default=None, help="Path to config file")
+    parser.add_argument(
+        "--output-dir", type=Path, default=None, help="Output directory for plots"
     )
-    
-    train, hold_out = split_data(df, config['forecast']['hold_out_hours'])
-    
+    args = parser.parse_args()
+
+    config = load_config(args.config)
+    output_dir = (
+        Path(args.output_dir)
+        if args.output_dir
+        else Path(config["output"]["figures_dir"])
+    )
+    output_dir.mkdir(exist_ok=True)
+
+    df = generate_synthetic_data(
+        config["data"]["start_date"],
+        config["data"]["periods"],
+        config["data"]["frequency"],
+        config["data"]["seed"],
+    )
+
+    train, hold_out = split_data(df, config["forecast"]["hold_out_hours"])
+
     sf = fit_statsforecast(
         train,
-        config['model']['season_length'],
-        config['model']['freq'],
-        config['model']['n_jobs']
+        config["model"]["season_length"],
+        config["model"]["freq"],
+        config["model"]["n_jobs"],
     )
-    
+
     forecasts = generate_forecast(sf, len(hold_out))
-    forecasts['ds'] = hold_out['ds'].values
-    
-    actual = hold_out['y'].values
-    predicted = forecasts['AutoARIMA'].values
+    forecasts["ds"] = hold_out["ds"].values
+
+    actual = hold_out["y"].values
+    predicted = forecasts["AutoARIMA"].values
     metrics = calculate_metrics(actual, predicted)
-    
+
     logging.info(f"MSE: {metrics['mse']:.2f}")
     logging.info(f"RMSE: {metrics['rmse']:.2f}")
     logging.info(f"MAE: {metrics['mae']:.2f}")
-    
-    plot_forecast(df, hold_out, forecasts, output_dir / 'autarima_forecast.png',
-                 "AutoARIMA", metrics)
-    
+
+    plot_forecast(
+        df,
+        hold_out,
+        forecasts,
+        output_dir / "autarima_forecast.png",
+        "AutoARIMA",
+        metrics,
+    )
+
     logging.info(f"\nAnalysis complete. Figures saved to {output_dir}")
+
 
 if __name__ == "__main__":
     main()
-
