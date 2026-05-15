@@ -12,7 +12,7 @@ from statsforecast.models import (
     SeasonalNaive
 )
 from statsforecast.models import AutoARIMA
-from utilsforecast.losses import mse, mape
+from utilsforecast.losses import mape
 import logging
 import matplotlib.pyplot as plt
 import numpy as np

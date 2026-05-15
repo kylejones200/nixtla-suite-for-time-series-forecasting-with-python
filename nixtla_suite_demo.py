@@ -9,10 +9,8 @@ from statsforecast.models import (
 # Configure logging
 # logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-    AutoARIMA, HoltWinters, CrostonClassic as Croston,
-    HistoricAverage, DynamicOptimizedTheta as DOT, SeasonalNaive
+    AutoARIMA
 )
-from utilsforecast.losses import mse, mape
 
 # Set environment variable
 os.environ['NIXTLA_ID_AS_COL'] = '1'
