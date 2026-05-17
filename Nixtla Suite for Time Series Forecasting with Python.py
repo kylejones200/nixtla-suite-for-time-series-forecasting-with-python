@@ -70,7 +70,7 @@ def fetch_fred_data(series_id, api_key, start_date="2000-01-01"):
         raise Exception(f"API request failed with status code {response.status_code}")
 
 
-def main() -> None:
+def set_the_environment_variable_to_adopt_the_new_be() -> None:
     os.environ["NIXTLA_ID_AS_COL"] = "1"
 
     np.random.seed(42)
@@ -132,6 +132,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
+
+def fetch_data_from_fred() -> None:
     series_id = "GDPC1"
 
     df = fetch_fred_data(series_id, api_key)
@@ -148,6 +150,8 @@ def main() -> None:
 
     print(forecasts.head())
 
+
+def assuming_df_is_your_fred_data_dataframe() -> None:
     df = df.rename(columns={"date": "ds", "value": "y"})
 
     df["unique_id"] = "GDPC1"
@@ -216,6 +220,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
+
+def assuming_df_is_your_fred_gdp_dataframe() -> None:
     "\nHierarchicalForecast: Hierarchical Time\xa0Series\nHierarchicalForecast provides tools for forecasting hierarchical and grouped time series, ensuring coherence across different aggregation levels.\nExample: Hierarchical Forecasting\n"
 
     df = df.rename(columns={"date": "ds", "value": "y"})
@@ -302,6 +308,8 @@ def main() -> None:
 
     print(pd.DataFrame(evaluation_results).T)
 
+
+def load_sample_hierarchical_data() -> None:
     df = pd.read_csv(
         "https://raw.githubusercontent.com/Nixtla/hierarchicalforecast<your_key_here>.csv"
     )
@@ -379,8 +387,12 @@ def main() -> None:
 
     print(pd.DataFrame(evaluation_results).T)
 
+
+def notebook_step_007() -> None:
     print(hierarchicalforecast.__version__)
 
+
+def load_sample_hierarchical_data_2() -> None:
     df = pd.read_csv(
         "https://raw.githubusercontent.com/Nixtla/hierarchicalforecast<your_key_here>.csv"
     )
@@ -430,6 +442,8 @@ def main() -> None:
 
     plt.show()
 
+
+def create_sample_data() -> None:
     np.random.seed(42)
 
     dates = pd.date_range(start="2021-01-01", end="2022-12-31", freq="D")
@@ -504,10 +518,14 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
+
+def in_statsforecast_set_n_jobs_to_1_to_use_all_avai() -> None:
     "\nParallel Computing and Scalability\nThe Nixtla suite leverages parallel computing to speed up forecasting tasks:\nn_jobs: Parameter to set the number of parallel jobs.\nDask Integration: For distributed computing across clusters.\n"
 
     sf = StatsForecast(df=df, models=models, freq="D", n_jobs=-1)
 
+
+def initialize_the_neuralforecast_model() -> None:
     np.random.seed(42)
 
     dates = pd.date_range(start="2021-01-01", end="2022-12-31", freq="D")
@@ -570,6 +588,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
+
+def generate_sample_data() -> None:
     np.random.seed(42)
 
     dates = pd.date_range(start="2021-01-01", end="2022-12-31", freq="D")
@@ -652,6 +672,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
+
+def disable_logging_to_avoid_the_error() -> None:
     pl.utilities.rank_zero.rank_zero_only.rank = -1
 
     np.random.seed(42)
@@ -730,6 +752,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {nhits_metrics[2]:.2f}")
 
+
+def disable_logging_to_avoid_the_error_2() -> None:
     pl.utilities.rank_zero.rank_zero_only.rank = -1
 
     np.random.seed(42)
@@ -805,6 +829,8 @@ def main() -> None:
 
     print(f"Mean Absolute Error (MAE): {nhits_metrics[2]:.2f}")
 
+
+def assuming_df_is_your_fred_gdp_dataframe_2() -> None:
     df = df.rename(columns={"date": "ds", "value": "y"})
 
     df["ds"] = pd.to_datetime(df["ds"])
@@ -888,6 +914,23 @@ def main() -> None:
     print("\nEvaluation Results:")
 
     print(pd.DataFrame(evaluation_results).T)
+
+
+def main() -> None:
+    set_the_environment_variable_to_adopt_the_new_be()
+    fetch_data_from_fred()
+    assuming_df_is_your_fred_data_dataframe()
+    assuming_df_is_your_fred_gdp_dataframe()
+    load_sample_hierarchical_data()
+    notebook_step_007()
+    load_sample_hierarchical_data_2()
+    create_sample_data()
+    in_statsforecast_set_n_jobs_to_1_to_use_all_avai()
+    initialize_the_neuralforecast_model()
+    generate_sample_data()
+    disable_logging_to_avoid_the_error()
+    disable_logging_to_avoid_the_error_2()
+    assuming_df_is_your_fred_gdp_dataframe_2()
 
 
 if __name__ == "__main__":
