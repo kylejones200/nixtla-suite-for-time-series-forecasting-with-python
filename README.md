@@ -35,3 +35,11 @@ Edit `config.yaml` to customize:
 - By default, the script generates synthetic ERCOT-style hourly data.
 - The model uses AutoARIMA with seasonal length of 24 hours.
 - StatsForecast requires the `NIXTLA_ID_AS_COL` environment variable to be set.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

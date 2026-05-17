@@ -76,34 +76,36 @@ def plot_forecast(
     metrics: Dict[str, float] = None,
 ):
     """Plot forecast"""
-    if plot:
-        fig, ax = plt.subplots(figsize=(12, 6))
+    if not plot:
+        return
 
-        ax.plot(
-            df["ds"], df["y"], label="Historical Data", color="#4A90A4", linewidth=1.2
-        )
-        ax.plot(
-            hold_out["ds"],
-            hold_out["y"],
-            label="Hold-Out Data",
-            color="#8B6F9E",
-            linewidth=1.2,
-        )
-        ax.plot(
-            forecasts["ds"],
-            forecasts[model_name],
-            label="Forecast",
-            color="#D4A574",
-            linewidth=1.2,
-        )
+    fig, ax = plt.subplots(figsize=(12, 6))
 
-        title_text = f"Time Series Forecast with {model_name}"
-        if metrics:
-            title_text += f": RMSE = {metrics['rmse']:.2f}, MAE = {metrics['mae']:.2f}"
+    ax.plot(
+        df["ds"], df["y"], label="Historical Data", color="#4A90A4", linewidth=1.2
+    )
+    ax.plot(
+        hold_out["ds"],
+        hold_out["y"],
+        label="Hold-Out Data",
+        color="#8B6F9E",
+        linewidth=1.2,
+    )
+    ax.plot(
+        forecasts["ds"],
+        forecasts[model_name],
+        label="Forecast",
+        color="#D4A574",
+        linewidth=1.2,
+    )
 
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Value")
-        ax.legend(loc="best")
+    title_text = f"Time Series Forecast with {model_name}"
+    if metrics:
+        title_text += f": RMSE = {metrics['rmse']:.2f}, MAE = {metrics['mae']:.2f}"
 
-        plt.savefig(output_path, dpi=100, bbox_inches="tight")
-        plt.close()
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Value")
+    ax.legend(loc="best")
+
+    plt.savefig(output_path, dpi=100, bbox_inches="tight")
+    plt.close()
