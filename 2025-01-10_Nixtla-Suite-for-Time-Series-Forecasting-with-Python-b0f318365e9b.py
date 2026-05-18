@@ -1,6 +1,5 @@
 # Description: Short example for Nixtla Suite for Time Series Forecasting with Python.
 
-
 import logging
 import os
 
@@ -19,7 +18,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
-
 
 # Set environment variable
 os.environ["NIXTLA_ID_AS_COL"] = "1"
@@ -91,7 +89,6 @@ logger.info(f"Mean Absolute Error (MAE): {mae_value:.2f}")
 # Root Mean Squared Error (RMSE): 11.94
 # Mean Absolute Error (MAE): 11.00
 
-
 # Create a list of models and instantiation parameters
 models = [
     HoltWinters(),
@@ -123,13 +120,10 @@ def evaluate_cv(df, metric):
     return evals
 
 
-
 def main():
     evaluation_df = evaluate_cv(cv_df, mape)
     evaluation_df.head()
-
     sf.plot(df, forecasts_df, models=["DynamicOptimizedTheta"], level=[90])
-
     # Forecast Metrics:
     # Mean Squared Error (MSE): 598.98
     # Root Mean Squared Error (RMSE): 24.47

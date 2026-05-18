@@ -3,6 +3,7 @@ name = "nixtla-suite-for-time-series-forecasting-with-pyth"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "pydantic>=2.10.0",
     "hierarchicalforecast>=1.5.1",
     "lightgbm>=4.6.0",
     "matplotlib>=3.10.9",
@@ -20,3 +21,7 @@ dependencies = [
     "statsforecast>=2.0.3",
     "utilsforecast>=0.2.16",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
