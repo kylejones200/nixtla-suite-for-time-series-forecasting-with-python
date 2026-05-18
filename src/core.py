@@ -42,7 +42,7 @@ def calculate_metrics(actual: np.ndarray, predicted: np.ndarray) -> Dict[str, fl
     mae = np.mean(np.abs(actual - predicted))
     return {'mse': mse, 'rmse': rmse, 'mae': mae}
 
-def plot_forecast(df: pd.DataFrame, hold_out: pd.DataFrame, forecasts: pd.DataFrame, output_path: Path, model_name: str='AutoARIMA', metrics: Dict[str, float] | None=None, plot: bool = False):
+def plot_forecast(df: pd.DataFrame, hold_out: pd.DataFrame, forecasts: pd.DataFrame, output_path: Path, model_name: str='AutoARIMA', metrics: Dict[str, float] | None=None, plot: bool=False):
     """Plot forecast"""
     if not plot:
         return
